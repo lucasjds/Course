@@ -2,6 +2,9 @@
 <button (click)="alteraTexto()">Alterar Titulo</button>
 <ul>
   <li *ngFor="let todo of todos ">
-    {{ todo }}
+    {{ todo.id }}. {{ todo.title }} | 
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)">Confirmar</button> | 
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)">Refazer</button> | 
+    <button (click)="remove(todo)"> Remove</button>
   </li>
 </ul>
