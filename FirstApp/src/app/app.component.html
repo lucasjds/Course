@@ -1,9 +1,10 @@
 <h1>{{ title }}</h1>
 <button (click)="alteraTexto()">Alterar Titulo</button>
 <ul>
+  <p><small *ngIf="todos.length==0">Nao ha nada na sua lista de tarefas</small></p>
   <li *ngFor="let todo of todos ">
     {{ todo.id }}. {{ todo.title }} | 
-    <button *ngIf="!todo.done" (click)="markAsDone(todo)">Confirmar</button> | 
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)">Concluir</button> | 
     <button *ngIf="todo.done" (click)="markAsUndone(todo)">Refazer</button> | 
     <button (click)="remove(todo)"> Remove</button>
   </li>
@@ -14,7 +15,7 @@
     <label>Tarefa</label>
     <input type='text' formControlName="title">
     <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo eh obrigatorio</small>
-    <button>Salvar</button>
+    <button [disabled]="form.invalid" (click)="add()">Salvar</button>
   </fieldset>
   
 

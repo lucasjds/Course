@@ -16,11 +16,19 @@ export class AppComponent {
     this.form =  this.fb.group({
       title : ['', Validators.required]
     });
-    this.todos.push(new Todo(1, 'primeira', false));
-    this.todos.push(new Todo(2, 'segunda', true));
-    this.todos.push(new Todo(3, 'terceira', true));
     
     
+  }
+
+  add(){
+    const title = this.form.controls['title'].value;
+    const id = this.todos.length + 1; 
+    this.todos.push(new Todo(id, title, false));
+    this.clear();
+  }
+
+  clear(){
+    this.form.reset();
   }
 
   remove(todo : Todo){
